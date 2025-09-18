@@ -11,7 +11,7 @@ fetch("products.json")
     });
     
     // Add welcome message after data is loaded
-    addMessage("👋 Hello! I'm your NextStyle shopping assistant. I can help you with product information. Try asking about a product by its ID (e.g., F1001) or ask about prices, colors, sizes, or materials.");
+    addMessage("👋 Hello! I'm your NextStyle shopping assistant. I can help you with product information. Try asking about a product by its ID (e.g., F1001) or ask about prices, colors, sizes, materials, ratings, descriptions, or availability.");
   })
   .catch(error => {
     console.error("Error loading products:", error);
@@ -67,7 +67,9 @@ function processMessage(userInput) {
     addMessage("ℹ️ I can help you with product information! I can tell you about:<br>" +
                "• Product details by ID (e.g., F1001)<br>" +
                "• Prices, colors, sizes, and materials<br>" +
-               "• Product availability<br>" +
+               "• Descriptions, ratings, and reviews<br>" +
+               "• Product availability and stock<br>" +
+               "• Categories and subcategories<br>" +
                "• And more! Just ask about any product.");
     return;
   }
@@ -98,7 +100,7 @@ function processMessage(userInput) {
         );
         return;
       }
-      if (lowerInput.includes("material") || lowerInput.includes("fabric")) {
+      if (lowerInput.includes("material") || lowerInput.includes("fabric") || lowerInput.includes("composition")) {
         addMessage(
           `🧵 Material of <b>${product.name}</b>: ${product.material}`
         );
@@ -119,15 +121,57 @@ function processMessage(userInput) {
         addMessage(status);
         return;
       }
+      if (lowerInput.includes("description") || lowerInput.includes("describe") || lowerInput.includes("what is") || lowerInput.includes("details")) {
+        addMessage(
+          `📝 Description of <b>${product.name}</b>:<br>${product.description}`
+        );
+        return;
+      }
+      if (lowerInput.includes("rating") || lowerInput.includes("rate") || lowerInput.includes("stars")) {
+        addMessage(
+          `⭐ Rating of <b>${product.name}</b>: ${product.rating}/5 stars (based on ${product.reviewCount} reviews)`
+        );
+        return;
+      }
+      if (lowerInput.includes("review") || lowerInput.includes("reviews")) {
+        addMessage(
+          `📝 <b>${product.name}</b> has ${product.reviewCount} reviews with an average rating of ${product.rating}/5 stars`
+        );
+        return;
+      }
+      if (lowerInput.includes("category") || lowerInput.includes("type") || lowerInput.includes("kind")) {
+        addMessage(
+          `📦 <b>${product.name}</b> belongs to: ${product.category} > ${product.subcategory}`
+        );
+        return;
+      }
+      if (lowerInput.includes("fit") || lowerInput.includes("fits")) {
+        addMessage(
+          `👕 Available fits for <b>${product.name}</b>: ${product.fits.join(", ")}`
+        );
+        return;
+      }
+      if (lowerInput.includes("supplier") || lowerInput.includes("brand") || lowerInput.includes("maker")) {
+        addMessage(
+          `🏭 Supplier of <b>${product.name}</b>: ${product.supplier}`
+        );
+        return;
+      }
+      if (lowerInput.includes("sku")) {
+        addMessage(
+          `🏷️ SKU for <b>${product.name}</b>: ${product.sku}`
+        );
+        return;
+      }
 
       // Default intro if no specific detail asked
       addMessage(
         `✅ Found product <b>${product.id}: ${product.name}</b><br>` +
         `${product.description}<br>` +
-        `💷 Price: £${product.price}<br>` +
+        `💷 Price: £${product.price} | ⭐ Rating: ${product.rating}/5 (${product.reviewCount} reviews)<br>` +
         `🎨 Colors: ${product.colorNames.join(", ")}<br>` +
         `📏 Sizes: ${product.sizes.join(", ")}<br><br>` +
-        `<i>Ask me about specific details like price, colours, sizes, material, images, or availability.</i>`
+        `<i>Ask me about specific details like price, description, colours, sizes, material, rating, reviews, images, or availability.</i>`
       );
       return;
     } else {
@@ -152,7 +196,7 @@ function processMessage(userInput) {
       addMessage(`📏 Sizes available for <b>${product.name}</b>: ${product.sizes.join(", ")}`);
       return;
     }
-    if (lowerInput.includes("material") || lowerInput.includes("fabric")) {
+    if (lowerInput.includes("material") || lowerInput.includes("fabric") || lowerInput.includes("composition")) {
       addMessage(`🧵 Material of <b>${product.name}</b>: ${product.material}`);
       return;
     }
@@ -171,6 +215,48 @@ function processMessage(userInput) {
       addMessage(status);
       return;
     }
+    if (lowerInput.includes("description") || lowerInput.includes("describe") || lowerInput.includes("what is") || lowerInput.includes("details")) {
+      addMessage(
+        `📝 Description of <b>${product.name}</b>:<br>${product.description}`
+      );
+      return;
+    }
+    if (lowerInput.includes("rating") || lowerInput.includes("rate") || lowerInput.includes("stars")) {
+      addMessage(
+        `⭐ Rating of <b>${product.name}</b>: ${product.rating}/5 stars (based on ${product.reviewCount} reviews)`
+      );
+      return;
+    }
+    if (lowerInput.includes("review") || lowerInput.includes("reviews")) {
+      addMessage(
+        `📝 <b>${product.name}</b> has ${product.reviewCount} reviews with an average rating of ${product.rating}/5 stars`
+      );
+      return;
+    }
+    if (lowerInput.includes("category") || lowerInput.includes("type") || lowerInput.includes("kind")) {
+      addMessage(
+        `📦 <b>${product.name}</b> belongs to: ${product.category} > ${product.subcategory}`
+      );
+      return;
+    }
+    if (lowerInput.includes("fit") || lowerInput.includes("fits")) {
+      addMessage(
+        `👕 Available fits for <b>${product.name}</b>: ${product.fits.join(", ")}`
+      );
+      return;
+    }
+    if (lowerInput.includes("supplier") || lowerInput.includes("brand") || lowerInput.includes("maker")) {
+      addMessage(
+        `🏭 Supplier of <b>${product.name}</b>: ${product.supplier}`
+      );
+      return;
+    }
+    if (lowerInput.includes("sku")) {
+      addMessage(
+        `🏷️ SKU for <b>${product.name}</b>: ${product.sku}`
+      );
+      return;
+    }
     
     // Handle "what is this" or "tell me about this product"
     if (lowerInput.includes("what") && lowerInput.includes("this") || 
@@ -178,14 +264,14 @@ function processMessage(userInput) {
       addMessage(
         `ℹ️ You're asking about <b>${product.name}</b>:<br>` +
         `${product.description}<br>` +
-        `💷 Price: £${product.price}<br>` +
+        `💷 Price: £${product.price} | ⭐ Rating: ${product.rating}/5<br>` +
         `🎨 Colors: ${product.colorNames.join(", ")}<br>` +
         `📏 Sizes: ${product.sizes.join(", ")}`
       );
       return;
     }
 
-    addMessage("🤔 I know you're asking about a product. Try asking about its price, colours, sizes, material, image, or availability.");
+    addMessage("🤔 I know you're asking about a product. Try asking about its price, description, colours, sizes, material, rating, reviews, image, or availability.");
     return;
   }
 
@@ -211,7 +297,7 @@ function processMessage(userInput) {
   }
 
   // 🟡 If no product ID yet and no recognized pattern
-  addMessage("ℹ️ Please provide a product ID (e.g., F1001) or ask about a specific product. I can help with prices, colors, sizes, materials, and more!");
+  addMessage("ℹ️ Please provide a product ID (e.g., F1001) or ask about a specific product. I can help with prices, descriptions, colors, sizes, materials, ratings, reviews, and more!");
 }
 
 // Enter key shortcut
@@ -224,6 +310,6 @@ document.getElementById("chat-input").addEventListener("keypress", function (e) 
 // Initialize with welcome message after a short delay
 setTimeout(() => {
   if (document.getElementById("chat-body").children.length === 0) {
-    addMessage("👋 Hello! I'm your NextStyle shopping assistant. I can help you with product information. Try asking about a product by its ID (e.g., F1001) or ask about prices, colors, sizes, or materials.");
+    addMessage("👋 Hello! I'm your NextStyle shopping assistant. I can help you with product information. Try asking about a product by its ID (e.g., F1001) or ask about prices, descriptions, colors, sizes, materials, ratings, or availability.");
   }
 }, 500);
