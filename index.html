@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>E-Commerce Product Chatbot</title>
+    <title>Tobby - Product Assistant</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         * {
@@ -25,7 +25,7 @@
         
         .container {
             width: 100%;
-            max-width: 900px;
+            max-width: 1000px;
             background: white;
             border-radius: 15px;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
@@ -39,6 +39,7 @@
             color: white;
             padding: 20px;
             text-align: center;
+            position: relative;
         }
         
         .header h1 {
@@ -49,6 +50,25 @@
         .header p {
             font-size: 1rem;
             opacity: 0.9;
+        }
+        
+        .tobby-avatar {
+            position: absolute;
+            top: 15px;
+            left: 20px;
+            width: 50px;
+            height: 50px;
+            background: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+        }
+        
+        .tobby-avatar i {
+            font-size: 24px;
+            color: #4b6cb7;
         }
         
         .chat-container {
@@ -185,6 +205,16 @@
             color: #4b6cb7;
         }
         
+        .color-swatch {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            margin-right: 8px;
+            vertical-align: middle;
+            border: 1px solid #ddd;
+        }
+        
         .typing-indicator {
             display: inline-flex;
             padding: 10px 15px;
@@ -242,37 +272,50 @@
                 margin-right: 10px;
                 flex: 0 0 auto;
             }
+            
+            .tobby-avatar {
+                position: relative;
+                top: 0;
+                left: 0;
+                margin: 0 auto 10px;
+            }
         }
     </style>
 </head>
 <body>
     <div class="container">
         <div class="header">
-            <h1><i class="fas fa-robot"></i> E-Commerce Product Assistant</h1>
-            <p>Ask me about products, availability, and details</p>
+            <div class="tobby-avatar">
+                <i class="fas fa-robot"></i>
+            </div>
+            <h1><i class="fas fa-robot"></i> Tobby - Your Product Assistant</h1>
+            <p>Ask me about fashion items and furniture products</p>
         </div>
         
         <div class="chat-container">
             <div class="sidebar">
-                <h3><i class="fas fa-lightbulb"></i> Try asking:</h3>
+                <h3><i class="fas fa-lightbulb"></i> Try asking Tobby:</h3>
                 <ul class="sample-questions">
-                    <li>Tell me about product ID 12345</li>
-                    <li>What's the price of product 23456?</li>
-                    <li>Do you have product 34567 in stock?</li>
-                    <li>Show me details for product 45678</li>
-                    <li>What colors are available for product 56789?</li>
+                    <li>Show me product ID 12345</li>
+                    <li>What colors are available for product 23456?</li>
+                    <li>Tell me about the fits for product 34567</li>
+                    <li>Do you have product 45678 in stock?</li>
+                    <li>What's the price of product 56789?</li>
                 </ul>
+                
+                <h3 style="margin-top: 20px;"><i class="fas fa-info-circle"></i> About Tobby</h3>
+                <p style="font-size: 0.9rem; color: #666;">Tobby can help you find information about fashion items and furniture products. Just ask about products by their ID!</p>
             </div>
             
             <div class="chat-box">
                 <div class="chat-messages" id="chatMessages">
                     <div class="message bot-message">
-                        <i class="fas fa-robot"></i> Hello! I'm your product assistant. I can help you find information about our products. Try asking about a product by its ID.
+                        <i class="fas fa-robot"></i> Hi there! I'm Tobby, your friendly product assistant. I can help you find information about our fashion and furniture products. How can I assist you today?
                     </div>
                 </div>
                 
                 <div class="chat-input">
-                    <input type="text" id="userInput" placeholder="Type your question here...">
+                    <input type="text" id="userInput" placeholder="Ask Tobby about a product...">
                     <button id="sendButton"><i class="fas fa-paper-plane"></i> Send</button>
                 </div>
             </div>
@@ -286,47 +329,70 @@
             const sendButton = document.getElementById('sendButton');
             const sampleQuestions = document.querySelectorAll('.sample-questions li');
             
-            // Mock product database
+            // Fashion and furniture product database
             const products = {
                 12345: {
-                    name: "Wireless Bluetooth Headphones",
-                    description: "Premium noise-cancelling headphones with 30-hour battery life and deep bass sound quality.",
-                    price: 129.99,
+                    name: "Men's Slim Fit Jeans",
+                    description: "Comfortable and stylish slim fit jeans made from premium denim with stretch for added comfort.",
+                    price: 59.99,
                     inStock: true,
-                    colors: ["Black", "White", "Blue"],
-                    rating: 4.7
-                },
-                23456: {
-                    name: "Smart Fitness Tracker",
-                    description: "Track your steps, heart rate, sleep patterns, and more with this versatile fitness band.",
-                    price: 79.99,
-                    inStock: true,
-                    colors: ["Black", "Pink", "Purple"],
+                    category: "Fashion",
+                    colors: ["#2c3e50", "#7f8c8d", "#34495e", "#16a085"],
+                    colorNames: ["Dark Blue", "Light Gray", "Navy", "Olive Green"],
+                    fits: ["Slim Fit", "Regular Fit"],
+                    sizes: ["28", "30", "32", "34", "36"],
+                    material: "98% Cotton, 2% Elastane",
                     rating: 4.5
                 },
+                23456: {
+                    name: "Women's Summer Dress",
+                    description: "Flowy and comfortable summer dress with floral pattern, perfect for warm weather.",
+                    price: 45.99,
+                    inStock: true,
+                    category: "Fashion",
+                    colors: ["#e74c3c", "#3498db", "#9b59b6", "#f1c40f"],
+                    colorNames: ["Coral Red", "Sky Blue", "Lavender", "Sunflower Yellow"],
+                    fits: ["Regular Fit", "Loose Fit"],
+                    sizes: ["XS", "S", "M", "L", "XL"],
+                    material: "100% Viscose",
+                    rating: 4.7
+                },
                 34567: {
-                    name: "Stainless Steel Water Bottle",
-                    description: "Keep your drinks hot for 12 hours or cold for 24 hours with this insulated water bottle.",
-                    price: 34.99,
-                    inStock: false,
-                    colors: ["Silver", "Matte Black", "Navy"],
+                    name: "Leather Sofa",
+                    description: "Elegant 3-seater leather sofa with comfortable cushions and sturdy wooden frame.",
+                    price: 899.99,
+                    inStock: true,
+                    category: "Furniture",
+                    colors: ["#8B4513", "#000000", "#A52A2A", "#D2691E"],
+                    colorNames: ["Saddle Brown", "Black", "Brown", "Chocolate"],
+                    dimensions: "84″W x 38″D x 34″H",
+                    material: "Genuine Leather",
                     rating: 4.8
                 },
                 45678: {
-                    name: "Mechanical Keyboard",
-                    description: "Tactile mechanical keyboard with RGB lighting and programmable macro keys.",
-                    price: 89.99,
-                    inStock: true,
-                    colors: ["Black", "White"],
-                    rating: 4.6
+                    name: "Coffee Table",
+                    description: "Modern coffee table with glass top and metal legs, perfect for contemporary living rooms.",
+                    price: 129.99,
+                    inStock: false,
+                    category: "Furniture",
+                    colors: ["#95a5a6", "#bdc3c7", "#7f8c8d"],
+                    colorNames: ["Slate Gray", "Silver", "Charcoal"],
+                    dimensions: "48″W x 24″D x 18″H",
+                    material: "Tempered Glass and Metal",
+                    rating: 4.4
                 },
                 56789: {
-                    name: "4K Ultra HD Monitor",
-                    description: "27-inch display with HDR support and accurate color reproduction for professionals.",
-                    price: 399.99,
+                    name: "Running Shoes",
+                    description: "Lightweight running shoes with cushioned soles for maximum comfort during workouts.",
+                    price: 89.99,
                     inStock: true,
-                    colors: ["Black"],
-                    rating: 4.9
+                    category: "Fashion",
+                    colors: ["#c0392b", "#1abc9c", "#2c3e50", "#f39c12"],
+                    colorNames: ["Cardinal Red", "Turquoise", "Midnight Blue", "Orange"],
+                    fits: ["True to Size", "Wide Fit"],
+                    sizes: ["7", "8", "9", "10", "11", "12"],
+                    material: "Mesh and Synthetic",
+                    rating: 4.6
                 }
             };
             
@@ -398,42 +464,80 @@
                 // Check if message contains a product ID
                 const productIdMatch = message.match(/\d{5}/);
                 
+                // Personal responses from Tobby
+                if (lowerMessage.includes('how are you')) {
+                    return "I'm doing great, thanks for asking! Ready to help you find some awesome products. What can I help you with today?";
+                }
+                
+                if (lowerMessage.includes('thank')) {
+                    return "You're very welcome! 😊 Is there anything else I can help you with?";
+                }
+                
+                if (lowerMessage.includes('hello') || lowerMessage.includes('hi')) {
+                    return "Hello there! 👋 I'm Tobby, your product assistant. How can I help you today?";
+                }
+                
                 if (productIdMatch) {
                     const productId = productIdMatch[0];
                     
                     if (products[productId]) {
                         const product = products[productId];
-                        return `
-                            <i class="fas fa-robot"></i> Here are the details for product ID ${productId}:
+                        let colorSwatches = "";
+                        
+                        for (let i = 0; i < product.colors.length; i++) {
+                            colorSwatches += `<span class="color-swatch" style="background-color: ${product.colors[i]}" title="${product.colorNames[i]}"></span> ${product.colorNames[i]}`;
+                            if (i < product.colors.length - 1) colorSwatches += ", ";
+                        }
+                        
+                        let response = `
+                            <i class="fas fa-robot"></i> Sure thing! Here are the details for product ID ${productId}:
                             <div class="product-card">
                                 <h4>${product.name}</h4>
                                 <p><span class="product-id">Description:</span> ${product.description}</p>
                                 <p><span class="product-id">Price:</span> $${product.price}</p>
-                                <p><span class="product-id">Availability:</span> ${product.inStock ? 'In Stock' : 'Out of Stock'}</p>
-                                <p><span class="product-id">Colors:</span> ${product.colors.join(', ')}</p>
-                                <p><span class="product-id">Rating:</span> ${product.rating}/5 stars</p>
-                            </div>
+                                <p><span class="product-id">Availability:</span> ${product.inStock ? 'In Stock ✅' : 'Out of Stock ❌'}</p>
+                                <p><span class="product-id">Category:</span> ${product.category}</p>
                         `;
+                        
+                        if (product.category === "Fashion") {
+                            response += `
+                                <p><span class="product-id">Available Colors:</span> ${colorSwatches}</p>
+                                <p><span class="product-id">Fits:</span> ${product.fits.join(', ')}</p>
+                                <p><span class="product-id">Sizes:</span> ${product.sizes.join(', ')}</p>
+                            `;
+                        } else {
+                            response += `
+                                <p><span class="product-id">Available Colors:</span> ${colorSwatches}</p>
+                                <p><span class="product-id">Dimensions:</span> ${product.dimensions}</p>
+                            `;
+                        }
+                        
+                        response += `
+                                <p><span class="product-id">Material:</span> ${product.material}</p>
+                                <p><span class="product-id">Rating:</span> ${product.rating}/5 stars ⭐</p>
+                            </div>
+                            <p>Is there anything else you'd like to know about this product?</p>
+                        `;
+                        
+                        return response;
                     } else {
-                        return `I'm sorry, I couldn't find a product with ID ${productId}. Please check the ID and try again.`;
+                        return `I'm sorry, I couldn't find a product with ID ${productId}. Please check the ID and try again. Our product IDs are 5-digit numbers like 12345.`;
                     }
                 }
                 
                 // Handle other types of queries
-                if (lowerMessage.includes('hello') || lowerMessage.includes('hi') || lowerMessage.includes('hey')) {
-                    return "Hello! How can I help you with product information today?";
-                } else if (lowerMessage.includes('thank')) {
-                    return "You're welcome! Is there anything else I can help you with?";
-                } else if (lowerMessage.includes('bye') || lowerMessage.includes('goodbye')) {
-                    return "Goodbye! Feel free to come back if you have more questions.";
+                if (lowerMessage.includes('color') || lowerMessage.includes('colour')) {
+                    return "I can check available colors for you! Please provide a product ID, for example: 'What colors are available for product 12345?'";
+                } else if (lowerMessage.includes('fit') || lowerMessage.includes('size')) {
+                    return "I can tell you about available fits and sizes! Please provide a product ID, for example: 'What fits are available for product 23456?'";
                 } else if (lowerMessage.includes('price')) {
-                    return "I can help you with pricing information. Please provide a product ID.";
+                    return "I can help you with pricing information. Please provide a product ID, for example: 'What's the price of product 34567?'";
                 } else if (lowerMessage.includes('stock') || lowerMessage.includes('available')) {
-                    return "I can check availability for you. Please provide a product ID.";
+                    return "I can check availability for you. Please provide a product ID, for example: 'Is product 45678 in stock?'";
                 }
                 
                 // Default response
-                return "I'm here to help you with product information. You can ask me about products by providing their 5-digit ID, like 'Tell me about product 12345'.";
+                return "I'm here to help you with product information! You can ask me about products by providing their 5-digit ID. For example, 'Tell me about product 12345' or 'What colors are available for product 23456?'";
             }
         });
     </script>
