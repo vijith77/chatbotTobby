@@ -19,26 +19,35 @@ function addMessage(text, sender = "bot") {
 }
 
 sendBtn.addEventListener("click", () => {
-  handleUserMessage(userInput.value);
+  handleUserMessage(userInput.value.trim());
   userInput.value = "";
 });
 
 function handleUserMessage(message) {
-  if (!message.trim()) return;
+  if (!message) return;
 
   addMessage(message, "user");
 
-  // Naive check if user mentioned a product ID
-  const productId = Object.keys(productData).find(id => message.includes(id));
-  if (productId) {
-    currentProductId = productId;
-    addMessage(`Got it ✅ You’re asking about <b>${productData[productId].name}</b>.`);
-    return;
+  // Try to detect a product ID in the user message (like P0001, F1001, etc.)
+  const regex = /\b([A-Z]\d{4})\b/i; 
+  const match = message.match(regex);
+
+  if (match) {
+    const productId = match[1].toUpperCase();
+    if (productData[productId]) {
+      currentProductId = productId;
+      addMessage(`Got it ✅ You’re asking about <b>${productData[productId].name}</b>.`);
+      return;
+    } else {
+      addMessage(`⚠️ Sorry, I couldn’t find a product with ID <b>${productId}</b>.`);
+      return;
+    }
   }
 
   // If context already set
   if (currentProductId) {
     const product = productData[currentProductId];
+
     if (/description/i.test(message)) {
       addMessage(product.description);
     } else if (/price/i.test(message)) {
@@ -47,10 +56,14 @@ function handleUserMessage(message) {
       addMessage(`Available colours: ${product.colorNames.join(", ")}`);
     } else if (/size/i.test(message)) {
       addMessage(`Sizes: ${product.sizes.join(", ")}`);
+    } else if (/material/i.test(message)) {
+      addMessage(`Material: ${product.material}`);
+    } else if (/stock/i.test(message)) {
+      addMessage(`Stock left: ${product.stockCount}`);
     } else {
-      addMessage("I’m not sure 🤔 Try asking about description, price, colours, or sizes.");
+      addMessage("🤔 I can tell you about description, price, colours, sizes, material, or stock.");
     }
   } else {
-    addMessage("Please give me a product ID (e.g., F1001) to get started.");
+    addMessage("Please give me a product ID (e.g., P0001) to get started.");
   }
 }
