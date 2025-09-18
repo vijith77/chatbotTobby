@@ -14,10 +14,12 @@
       <div class="card-header bg-dark text-white rounded-top-4">
         <h5 class="mb-0">🛍️ NextStyle Shopping Assistant</h5>
       </div>
-      <div class="card-body chat-box" id="chatBox"></div>
+      <div class="card-body chat-box">
+        <div id="chat-body" class="chat-body"></div>
+      </div>
       <div class="card-footer d-flex">
-        <input id="userInput" type="text" class="form-control me-2" placeholder="Ask me about a product...">
-        <button id="sendBtn" class="btn btn-dark">Send</button>
+        <input id="chat-input" type="text" class="form-control me-2" placeholder="Ask me about a product...">
+        <button id="send-btn" class="btn btn-dark" onclick="handleUserInput()">Send</button>
       </div>
     </div>
   </div>
