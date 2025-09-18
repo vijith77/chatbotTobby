@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>E-Commerce Product Chatbot</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+            color: #333;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 900px;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .header {
+            background: linear-gradient(90deg, #4b6cb7 0%, #182848 100%);
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+        
+        .header h1 {
+            font-size: 1.8rem;
+            margin-bottom: 5px;
+        }
+        
+        .header p {
+            font-size: 1rem;
+            opacity: 0.9;
+        }
+        
+        .chat-container {
+            display: flex;
+            height: 500px;
+        }
+        
+        .sidebar {
+            width: 250px;
+            background: #f5f7fb;
+            padding: 20px;
+            border-right: 1px solid #e1e4e8;
+        }
+        
+        .sidebar h3 {
+            margin-bottom: 15px;
+            color: #2d3748;
+            font-size: 1.2rem;
+        }
+        
+        .sample-questions {
+            list-style: none;
+        }
+        
+        .sample-questions li {
+            background: white;
+            margin-bottom: 10px;
+            padding: 10px;
+            border-radius: 8px;
+            cursor: pointer;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            transition: transform 0.2s, box-shadow 0.2s;
+            font-size: 0.9rem;
+        }
+        
+        .sample-questions li:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            background: #e9f2ff;
+        }
+        
+        .chat-box {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .chat-messages {
+            flex: 1;
+            padding: 20px;
+            overflow-y: auto;
+            background: #fafafa;
+        }
+        
+        .message {
+            max-width: 80%;
+            margin-bottom: 15px;
+            padding: 12px 16px;
+            border-radius: 18px;
+            line-height: 1.4;
+            animation: fadeIn 0.3s ease;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .bot-message {
+            background: #e9f2ff;
+            border-bottom-left-radius: 5px;
+            align-self: flex-start;
+        }
+        
+        .user-message {
+            background: #d1e7ff;
+            border-bottom-right-radius: 5px;
+            align-self: flex-end;
+            margin-left: auto;
+        }
+        
+        .chat-input {
+            display: flex;
+            padding: 15px;
+            border-top: 1px solid #e1e4e8;
+            background: white;
+        }
+        
+        .chat-input input {
+            flex: 1;
+            padding: 12px 15px;
+            border: 1px solid #d1d9e6;
+            border-radius: 25px;
+            outline: none;
+            font-size: 1rem;
+        }
+        
+        .chat-input button {
+            background: #4b6cb7;
+            color: white;
+            border: none;
+            border-radius: 25px;
+            padding: 0 20px;
+            margin-left: 10px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        
+        .chat-input button:hover {
+            background: #3556a3;
+        }
+        
+        .product-card {
+            background: white;
+            border-radius: 10px;
+            padding: 15px;
+            margin: 10px 0;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+            border-left: 4px solid #4b6cb7;
+        }
+        
+        .product-card h4 {
+            color: #2d3748;
+            margin-bottom: 8px;
+        }
+        
+        .product-card p {
+            margin: 5px 0;
+            font-size: 0.9rem;
+        }
+        
+        .product-id {
+            font-weight: bold;
+            color: #4b6cb7;
+        }
+        
+        .typing-indicator {
+            display: inline-flex;
+            padding: 10px 15px;
+            background: #e9f2ff;
+            border-radius: 18px;
+            border-bottom-left-radius: 5px;
+        }
+        
+        .typing-dot {
+            width: 8px;
+            height: 8px;
+            background: #6a85b6;
+            border-radius: 50%;
+            margin: 0 3px;
+            animation: typingAnimation 1.4s infinite ease-in-out;
+        }
+        
+        .typing-dot:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+        
+        .typing-dot:nth-child(3) {
+            animation-delay: 0.4s;
+        }
+        
+        @keyframes typingAnimation {
+            0%, 60%, 100% {
+                transform: translateY(0);
+            }
+            30% {
+                transform: translateY(-5px);
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .chat-container {
+                flex-direction: column;
+                height: auto;
+            }
+            
+            .sidebar {
+                width: 100%;
+                border-right: none;
+                border-bottom: 1px solid #e1e4e8;
+            }
+            
+            .sample-questions {
+                display: flex;
+                overflow-x: auto;
+                padding-bottom: 10px;
+            }
+            
+            .sample-questions li {
+                white-space: nowrap;
+                margin-right: 10px;
+                flex: 0 0 auto;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1><i class="fas fa-robot"></i> E-Commerce Product Assistant</h1>
+            <p>Ask me about products, availability, and details</p>
+        </div>
+        
+        <div class="chat-container">
+            <div class="sidebar">
+                <h3><i class="fas fa-lightbulb"></i> Try asking:</h3>
+                <ul class="sample-questions">
+                    <li>Tell me about product ID 12345</li>
+                    <li>What's the price of product 23456?</li>
+                    <li>Do you have product 34567 in stock?</li>
+                    <li>Show me details for product 45678</li>
+                    <li>What colors are available for product 56789?</li>
+                </ul>
+            </div>
+            
+            <div class="chat-box">
+                <div class="chat-messages" id="chatMessages">
+                    <div class="message bot-message">
+                        <i class="fas fa-robot"></i> Hello! I'm your product assistant. I can help you find information about our products. Try asking about a product by its ID.
+                    </div>
+                </div>
+                
+                <div class="chat-input">
+                    <input type="text" id="userInput" placeholder="Type your question here...">
+                    <button id="sendButton"><i class="fas fa-paper-plane"></i> Send</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const chatMessages = document.getElementById('chatMessages');
+            const userInput = document.getElementById('userInput');
+            const sendButton = document.getElementById('sendButton');
+            const sampleQuestions = document.querySelectorAll('.sample-questions li');
+            
+            // Mock product database
+            const products = {
+                12345: {
+                    name: "Wireless Bluetooth Headphones",
+                    description: "Premium noise-cancelling headphones with 30-hour battery life and deep bass sound quality.",
+                    price: 129.99,
+                    inStock: true,
+                    colors: ["Black", "White", "Blue"],
+                    rating: 4.7
+                },
+                23456: {
+                    name: "Smart Fitness Tracker",
+                    description: "Track your steps, heart rate, sleep patterns, and more with this versatile fitness band.",
+                    price: 79.99,
+                    inStock: true,
+                    colors: ["Black", "Pink", "Purple"],
+                    rating: 4.5
+                },
+                34567: {
+                    name: "Stainless Steel Water Bottle",
+                    description: "Keep your drinks hot for 12 hours or cold for 24 hours with this insulated water bottle.",
+                    price: 34.99,
+                    inStock: false,
+                    colors: ["Silver", "Matte Black", "Navy"],
+                    rating: 4.8
+                },
+                45678: {
+                    name: "Mechanical Keyboard",
+                    description: "Tactile mechanical keyboard with RGB lighting and programmable macro keys.",
+                    price: 89.99,
+                    inStock: true,
+                    colors: ["Black", "White"],
+                    rating: 4.6
+                },
+                56789: {
+                    name: "4K Ultra HD Monitor",
+                    description: "27-inch display with HDR support and accurate color reproduction for professionals.",
+                    price: 399.99,
+                    inStock: true,
+                    colors: ["Black"],
+                    rating: 4.9
+                }
+            };
+            
+            // Add event listeners
+            sendButton.addEventListener('click', handleUserMessage);
+            userInput.addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') {
+                    handleUserMessage();
+                }
+            });
+            
+            sampleQuestions.forEach(question => {
+                question.addEventListener('click', function() {
+                    userInput.value = this.textContent;
+                    handleUserMessage();
+                });
+            });
+            
+            function handleUserMessage() {
+                const message = userInput.value.trim();
+                if (message === '') return;
+                
+                // Add user message to chat
+                addMessage(message, 'user');
+                userInput.value = '';
+                
+                // Show typing indicator
+                const typingIndicator = document.createElement('div');
+                typingIndicator.className = 'message bot-message typing-indicator';
+                typingIndicator.id = 'typingIndicator';
+                typingIndicator.innerHTML = `
+                    <span class="typing-dot"></span>
+                    <span class="typing-dot"></span>
+                    <span class="typing-dot"></span>
+                `;
+                chatMessages.appendChild(typingIndicator);
+                chatMessages.scrollTop = chatMessages.scrollHeight;
+                
+                // Simulate API response delay
+                setTimeout(() => {
+                    // Remove typing indicator
+                    const indicator = document.getElementById('typingIndicator');
+                    if (indicator) indicator.remove();
+                    
+                    // Generate and add bot response
+                    const response = generateBotResponse(message);
+                    addMessage(response, 'bot');
+                }, 1500);
+            }
+            
+            function addMessage(text, sender) {
+                const messageElement = document.createElement('div');
+                messageElement.className = `message ${sender}-message`;
+                
+                if (sender === 'bot' && text.includes('product-card')) {
+                    messageElement.innerHTML = text;
+                } else {
+                    messageElement.innerHTML = sender === 'bot' ? `<i class="fas fa-robot"></i> ${text}` : `<i class="fas fa-user"></i> ${text}`;
+                }
+                
+                chatMessages.appendChild(messageElement);
+                chatMessages.scrollTop = chatMessages.scrollHeight;
+            }
+            
+            function generateBotResponse(message) {
+                // Convert message to lowercase for easier matching
+                const lowerMessage = message.toLowerCase();
+                
+                // Check if message contains a product ID
+                const productIdMatch = message.match(/\d{5}/);
+                
+                if (productIdMatch) {
+                    const productId = productIdMatch[0];
+                    
+                    if (products[productId]) {
+                        const product = products[productId];
+                        return `
+                            <i class="fas fa-robot"></i> Here are the details for product ID ${productId}:
+                            <div class="product-card">
+                                <h4>${product.name}</h4>
+                                <p><span class="product-id">Description:</span> ${product.description}</p>
+                                <p><span class="product-id">Price:</span> $${product.price}</p>
+                                <p><span class="product-id">Availability:</span> ${product.inStock ? 'In Stock' : 'Out of Stock'}</p>
+                                <p><span class="product-id">Colors:</span> ${product.colors.join(', ')}</p>
+                                <p><span class="product-id">Rating:</span> ${product.rating}/5 stars</p>
+                            </div>
+                        `;
+                    } else {
+                        return `I'm sorry, I couldn't find a product with ID ${productId}. Please check the ID and try again.`;
+                    }
+                }
+                
+                // Handle other types of queries
+                if (lowerMessage.includes('hello') || lowerMessage.includes('hi') || lowerMessage.includes('hey')) {
+                    return "Hello! How can I help you with product information today?";
+                } else if (lowerMessage.includes('thank')) {
+                    return "You're welcome! Is there anything else I can help you with?";
+                } else if (lowerMessage.includes('bye') || lowerMessage.includes('goodbye')) {
+                    return "Goodbye! Feel free to come back if you have more questions.";
+                } else if (lowerMessage.includes('price')) {
+                    return "I can help you with pricing information. Please provide a product ID.";
+                } else if (lowerMessage.includes('stock') || lowerMessage.includes('available')) {
+                    return "I can check availability for you. Please provide a product ID.";
+                }
+                
+                // Default response
+                return "I'm here to help you with product information. You can ask me about products by providing their 5-digit ID, like 'Tell me about product 12345'.";
+            }
+        });
+    </script>
+</body>
+</html>
