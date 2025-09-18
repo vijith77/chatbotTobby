@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tobby - Product Assistant</title>
+    <title>Fashion Product Assistant</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         * {
@@ -52,7 +52,7 @@
             opacity: 0.9;
         }
         
-        .tobby-avatar {
+        .avatar {
             position: absolute;
             top: 15px;
             left: 20px;
@@ -66,7 +66,7 @@
             box-shadow: 0 4px 10px rgba(0,0,0,0.2);
         }
         
-        .tobby-avatar i {
+        .avatar i {
             font-size: 24px;
             color: #4b6cb7;
         }
@@ -181,7 +181,7 @@
             background: #3556a3;
         }
         
-        .product-card {
+        .product-info {
             background: white;
             border-radius: 10px;
             padding: 15px;
@@ -190,12 +190,12 @@
             border-left: 4px solid #4b6cb7;
         }
         
-        .product-card h4 {
+        .product-info h4 {
             color: #2d3748;
             margin-bottom: 8px;
         }
         
-        .product-card p {
+        .product-info p {
             margin: 5px 0;
             font-size: 0.9rem;
         }
@@ -273,7 +273,7 @@
                 flex: 0 0 auto;
             }
             
-            .tobby-avatar {
+            .avatar {
                 position: relative;
                 top: 0;
                 left: 0;
@@ -285,37 +285,37 @@
 <body>
     <div class="container">
         <div class="header">
-            <div class="tobby-avatar">
-                <i class="fas fa-robot"></i>
+            <div class="avatar">
+                <i class="fas fa-tshirt"></i>
             </div>
-            <h1><i class="fas fa-robot"></i> Tobby - Your Product Assistant</h1>
-            <p>Ask me about fashion items and furniture products</p>
+            <h1><i class="fas fa-robot"></i> Fashion Product Assistant</h1>
+            <p>Precise product information for internal use</p>
         </div>
         
         <div class="chat-container">
             <div class="sidebar">
-                <h3><i class="fas fa-lightbulb"></i> Try asking Tobby:</h3>
+                <h3><i class="fas fa-lightbulb"></i> Sample Queries:</h3>
                 <ul class="sample-questions">
-                    <li>Show me product ID 12345</li>
-                    <li>What colors are available for product 23456?</li>
-                    <li>Tell me about the fits for product 34567</li>
-                    <li>Do you have product 45678 in stock?</li>
-                    <li>What's the price of product 56789?</li>
+                    <li>Colors for product 12345</li>
+                    <li>Fits for product 23456</li>
+                    <li>Stock status for product 34567</li>
+                    <li>Materials for product 45678</li>
+                    <li>Price for product 56789</li>
                 </ul>
                 
-                <h3 style="margin-top: 20px;"><i class="fas fa-info-circle"></i> About Tobby</h3>
-                <p style="font-size: 0.9rem; color: #666;">Tobby can help you find information about fashion items and furniture products. Just ask about products by their ID!</p>
+                <h3 style="margin-top: 20px;"><i class="fas fa-info-circle"></i> Instructions</h3>
+                <p style="font-size: 0.9rem; color: #666;">Ask about products using their 5-digit ID. Be specific in your queries for precise answers.</p>
             </div>
             
             <div class="chat-box">
                 <div class="chat-messages" id="chatMessages">
                     <div class="message bot-message">
-                        <i class="fas fa-robot"></i> Hi there! I'm Tobby, your friendly product assistant. I can help you find information about our fashion and furniture products. How can I assist you today?
+                        <i class="fas fa-robot"></i> Hello! I provide precise fashion product information. Ask me about specific attributes like colors, fits, materials, or stock status using product IDs.
                     </div>
                 </div>
                 
                 <div class="chat-input">
-                    <input type="text" id="userInput" placeholder="Ask Tobby about a product...">
+                    <input type="text" id="userInput" placeholder="Ask about a product (e.g., Colors for 12345)...">
                     <button id="sendButton"><i class="fas fa-paper-plane"></i> Send</button>
                 </div>
             </div>
@@ -329,70 +329,83 @@
             const sendButton = document.getElementById('sendButton');
             const sampleQuestions = document.querySelectorAll('.sample-questions li');
             
-            // Fashion and furniture product database
+            // Fashion product database
             const products = {
                 12345: {
                     name: "Men's Slim Fit Jeans",
-                    description: "Comfortable and stylish slim fit jeans made from premium denim with stretch for added comfort.",
+                    description: "Premium denim jeans with stretch for comfort",
                     price: 59.99,
                     inStock: true,
-                    category: "Fashion",
+                    category: "Bottoms",
                     colors: ["#2c3e50", "#7f8c8d", "#34495e", "#16a085"],
                     colorNames: ["Dark Blue", "Light Gray", "Navy", "Olive Green"],
                     fits: ["Slim Fit", "Regular Fit"],
                     sizes: ["28", "30", "32", "34", "36"],
                     material: "98% Cotton, 2% Elastane",
-                    rating: 4.5
+                    stockCount: 142,
+                    supplier: "DenimWorks Inc.",
+                    sku: "DNM-SL-JNS-2023"
                 },
                 23456: {
                     name: "Women's Summer Dress",
-                    description: "Flowy and comfortable summer dress with floral pattern, perfect for warm weather.",
+                    description: "Flowy summer dress with floral pattern",
                     price: 45.99,
                     inStock: true,
-                    category: "Fashion",
+                    category: "Dresses",
                     colors: ["#e74c3c", "#3498db", "#9b59b6", "#f1c40f"],
                     colorNames: ["Coral Red", "Sky Blue", "Lavender", "Sunflower Yellow"],
                     fits: ["Regular Fit", "Loose Fit"],
                     sizes: ["XS", "S", "M", "L", "XL"],
                     material: "100% Viscose",
-                    rating: 4.7
+                    stockCount: 87,
+                    supplier: "SummerBreeze Fashion",
+                    sku: "SUM-DRS-FL-2023"
                 },
                 34567: {
-                    name: "Leather Sofa",
-                    description: "Elegant 3-seater leather sofa with comfortable cushions and sturdy wooden frame.",
-                    price: 899.99,
-                    inStock: true,
-                    category: "Furniture",
-                    colors: ["#8B4513", "#000000", "#A52A2A", "#D2691E"],
-                    colorNames: ["Saddle Brown", "Black", "Brown", "Chocolate"],
-                    dimensions: "84″W x 38″D x 34″H",
-                    material: "Genuine Leather",
-                    rating: 4.8
-                },
-                45678: {
-                    name: "Coffee Table",
-                    description: "Modern coffee table with glass top and metal legs, perfect for contemporary living rooms.",
-                    price: 129.99,
-                    inStock: false,
-                    category: "Furniture",
-                    colors: ["#95a5a6", "#bdc3c7", "#7f8c8d"],
-                    colorNames: ["Slate Gray", "Silver", "Charcoal"],
-                    dimensions: "48″W x 24″D x 18″H",
-                    material: "Tempered Glass and Metal",
-                    rating: 4.4
-                },
-                56789: {
                     name: "Running Shoes",
-                    description: "Lightweight running shoes with cushioned soles for maximum comfort during workouts.",
+                    description: "Lightweight running shoes with cushioned soles",
                     price: 89.99,
-                    inStock: true,
-                    category: "Fashion",
+                    inStock: false,
+                    category: "Footwear",
                     colors: ["#c0392b", "#1abc9c", "#2c3e50", "#f39c12"],
                     colorNames: ["Cardinal Red", "Turquoise", "Midnight Blue", "Orange"],
                     fits: ["True to Size", "Wide Fit"],
                     sizes: ["7", "8", "9", "10", "11", "12"],
                     material: "Mesh and Synthetic",
-                    rating: 4.6
+                    stockCount: 0,
+                    supplier: "RunFast Athletics",
+                    sku: "RUN-SHO-LT-2023",
+                    restockDate: "2023-11-15"
+                },
+                45678: {
+                    name: "Leather Jacket",
+                    description: "Classic biker-style leather jacket",
+                    price: 199.99,
+                    inStock: true,
+                    category: "Outerwear",
+                    colors: ["#000000", "#8B4513", "#A9A9A9"],
+                    colorNames: ["Black", "Brown", "Charcoal"],
+                    fits: ["Slim Fit", "Regular Fit"],
+                    sizes: ["S", "M", "L", "XL", "XXL"],
+                    material: "100% Genuine Leather",
+                    stockCount: 23,
+                    supplier: "LeatherCraft Studios",
+                    sku: "LTH-JKT-BK-2023"
+                },
+                56789: {
+                    name: "Cashmere Sweater",
+                    description: "Luxurious soft cashmere sweater",
+                    price: 129.99,
+                    inStock: true,
+                    category: "Tops",
+                    colors: ["#e74c3c", "#2980b9", "#2c3e50", "#f1c40f"],
+                    colorNames: ["Burgundy", "Navy Blue", "Charcoal", "Camel"],
+                    fits: ["Regular Fit", "Oversized"],
+                    sizes: ["XS", "S", "M", "L", "XL"],
+                    material: "100% Cashmere",
+                    stockCount: 34,
+                    supplier: "LuxuryKnits Ltd.",
+                    sku: "CASH-SWT-PL-2023"
                 }
             };
             
@@ -440,14 +453,14 @@
                     // Generate and add bot response
                     const response = generateBotResponse(message);
                     addMessage(response, 'bot');
-                }, 1500);
+                }, 1000);
             }
             
             function addMessage(text, sender) {
                 const messageElement = document.createElement('div');
                 messageElement.className = `message ${sender}-message`;
                 
-                if (sender === 'bot' && text.includes('product-card')) {
+                if (sender === 'bot' && text.includes('product-info')) {
                     messageElement.innerHTML = text;
                 } else {
                     messageElement.innerHTML = sender === 'bot' ? `<i class="fas fa-robot"></i> ${text}` : `<i class="fas fa-user"></i> ${text}`;
@@ -464,80 +477,104 @@
                 // Check if message contains a product ID
                 const productIdMatch = message.match(/\d{5}/);
                 
-                // Personal responses from Tobby
-                if (lowerMessage.includes('how are you')) {
-                    return "I'm doing great, thanks for asking! Ready to help you find some awesome products. What can I help you with today?";
+                if (!productIdMatch) {
+                    return "Please include a valid 5-digit product ID in your query (e.g., 'Colors for 12345').";
                 }
                 
-                if (lowerMessage.includes('thank')) {
-                    return "You're very welcome! 😊 Is there anything else I can help you with?";
+                const productId = productIdMatch[0];
+                
+                if (!products[productId]) {
+                    return `Product with ID ${productId} not found. Valid product IDs are: 12345, 23456, 34567, 45678, 56789.`;
                 }
                 
-                if (lowerMessage.includes('hello') || lowerMessage.includes('hi')) {
-                    return "Hello there! 👋 I'm Tobby, your product assistant. How can I help you today?";
-                }
+                const product = products[productId];
                 
-                if (productIdMatch) {
-                    const productId = productIdMatch[0];
-                    
-                    if (products[productId]) {
-                        const product = products[productId];
-                        let colorSwatches = "";
-                        
-                        for (let i = 0; i < product.colors.length; i++) {
-                            colorSwatches += `<span class="color-swatch" style="background-color: ${product.colors[i]}" title="${product.colorNames[i]}"></span> ${product.colorNames[i]}`;
-                            if (i < product.colors.length - 1) colorSwatches += ", ";
-                        }
-                        
-                        let response = `
-                            <i class="fas fa-robot"></i> Sure thing! Here are the details for product ID ${productId}:
-                            <div class="product-card">
-                                <h4>${product.name}</h4>
-                                <p><span class="product-id">Description:</span> ${product.description}</p>
-                                <p><span class="product-id">Price:</span> $${product.price}</p>
-                                <p><span class="product-id">Availability:</span> ${product.inStock ? 'In Stock ✅' : 'Out of Stock ❌'}</p>
-                                <p><span class="product-id">Category:</span> ${product.category}</p>
-                        `;
-                        
-                        if (product.category === "Fashion") {
-                            response += `
-                                <p><span class="product-id">Available Colors:</span> ${colorSwatches}</p>
-                                <p><span class="product-id">Fits:</span> ${product.fits.join(', ')}</p>
-                                <p><span class="product-id">Sizes:</span> ${product.sizes.join(', ')}</p>
-                            `;
-                        } else {
-                            response += `
-                                <p><span class="product-id">Available Colors:</span> ${colorSwatches}</p>
-                                <p><span class="product-id">Dimensions:</span> ${product.dimensions}</p>
-                            `;
-                        }
-                        
-                        response += `
-                                <p><span class="product-id">Material:</span> ${product.material}</p>
-                                <p><span class="product-id">Rating:</span> ${product.rating}/5 stars ⭐</p>
-                            </div>
-                            <p>Is there anything else you'd like to know about this product?</p>
-                        `;
-                        
-                        return response;
-                    } else {
-                        return `I'm sorry, I couldn't find a product with ID ${productId}. Please check the ID and try again. Our product IDs are 5-digit numbers like 12345.`;
+                // Handle specific attribute queries
+                if (lowerMessage.includes('color')) {
+                    let colorSwatches = "";
+                    for (let i = 0; i < product.colors.length; i++) {
+                        colorSwatches += `<span class="color-swatch" style="background-color: ${product.colors[i]}" title="${product.colorNames[i]}"></span> ${product.colorNames[i]}`;
+                        if (i < product.colors.length - 1) colorSwatches += ", ";
                     }
+                    
+                    return `
+                        <i class="fas fa-robot"></i> Available colors for ${product.name} (${productId}):
+                        <div class="product-info">
+                            <p>${colorSwatches}</p>
+                        </div>
+                    `;
                 }
                 
-                // Handle other types of queries
-                if (lowerMessage.includes('color') || lowerMessage.includes('colour')) {
-                    return "I can check available colors for you! Please provide a product ID, for example: 'What colors are available for product 12345?'";
-                } else if (lowerMessage.includes('fit') || lowerMessage.includes('size')) {
-                    return "I can tell you about available fits and sizes! Please provide a product ID, for example: 'What fits are available for product 23456?'";
-                } else if (lowerMessage.includes('price')) {
-                    return "I can help you with pricing information. Please provide a product ID, for example: 'What's the price of product 34567?'";
-                } else if (lowerMessage.includes('stock') || lowerMessage.includes('available')) {
-                    return "I can check availability for you. Please provide a product ID, for example: 'Is product 45678 in stock?'";
+                if (lowerMessage.includes('fit')) {
+                    return `
+                        <i class="fas fa-robot"></i> Available fits for ${product.name} (${productId}):
+                        <div class="product-info">
+                            <p>${product.fits.join(', ')}</p>
+                        </div>
+                    `;
                 }
                 
-                // Default response
-                return "I'm here to help you with product information! You can ask me about products by providing their 5-digit ID. For example, 'Tell me about product 12345' or 'What colors are available for product 23456?'";
+                if (lowerMessage.includes('size')) {
+                    return `
+                        <i class="fas fa-robot"></i> Available sizes for ${product.name} (${productId}):
+                        <div class="product-info">
+                            <p>${product.sizes.join(', ')}</p>
+                        </div>
+                    `;
+                }
+                
+                if (lowerMessage.includes('stock') || lowerMessage.includes('available')) {
+                    let stockInfo = product.inStock ? 
+                        `In Stock (${product.stockCount} units)` : 
+                        `Out of Stock${product.restockDate ? `. Expected restock: ${product.restockDate}` : ''}`;
+                    
+                    return `
+                        <i class="fas fa-robot"></i> Stock status for ${product.name} (${productId}):
+                        <div class="product-info">
+                            <p>${stockInfo}</p>
+                        </div>
+                    `;
+                }
+                
+                if (lowerMessage.includes('material')) {
+                    return `
+                        <i class="fas fa-robot"></i> Material composition for ${product.name} (${productId}):
+                        <div class="product-info">
+                            <p>${product.material}</p>
+                        </div>
+                    `;
+                }
+                
+                if (lowerMessage.includes('price')) {
+                    return `
+                        <i class="fas fa-robot"></i> Price for ${product.name} (${productId}):
+                        <div class="product-info">
+                            <p>$${product.price}</p>
+                        </div>
+                    `;
+                }
+                
+                if (lowerMessage.includes('supplier')) {
+                    return `
+                        <i class="fas fa-robot"></i> Supplier information for ${product.name} (${productId}):
+                        <div class="product-info">
+                            <p>${product.supplier} (SKU: ${product.sku})</p>
+                        </div>
+                    `;
+                }
+                
+                // Default response for product ID without specific attribute
+                return `
+                    <i class="fas fa-robot"></i> Product information for ${productId}:
+                    <div class="product-info">
+                        <h4>${product.name}</h4>
+                        <p><span class="product-id">Description:</span> ${product.description}</p>
+                        <p><span class="product-id">Price:</span> $${product.price}</p>
+                        <p><span class="product-id">Stock:</span> ${product.inStock ? 'In Stock (' + product.stockCount + ' units)' : 'Out of Stock'}</p>
+                        <p><span class="product-id">Category:</span> ${product.category}</p>
+                        <p>Ask about specific attributes: colors, fits, sizes, materials, supplier, or stock status.</p>
+                    </div>
+                `;
             }
         });
     </script>
