@@ -25,7 +25,13 @@
         ]
       },
       "rating": 4.5,
-      "reviewCount": 128
+      "reviewCount": 128,
+      "lastOrderDate": "2023-10-15",
+      "salesData": {
+        "lastMonth": 45,
+        "lastQuarter": 210,
+        "lastYear": 850
+      }
     },
     {
       "id": "E2005",
@@ -52,7 +58,13 @@
         ]
       },
       "rating": 4.8,
-      "reviewCount": 215
+      "reviewCount": 215,
+      "lastOrderDate": "2023-11-05",
+      "salesData": {
+        "lastMonth": 32,
+        "lastQuarter": 145,
+        "lastYear": 520
+      }
     },
     {
       "id": "H3007",
@@ -79,7 +91,13 @@
         ]
       },
       "rating": 4.6,
-      "reviewCount": 89
+      "reviewCount": 89,
+      "lastOrderDate": "2023-09-22",
+      "salesData": {
+        "lastMonth": 18,
+        "lastQuarter": 75,
+        "lastYear": 290
+      }
     },
     {
       "id": "F4002",
@@ -106,7 +124,13 @@
         ]
       },
       "rating": 4.7,
-      "reviewCount": 142
+      "reviewCount": 142,
+      "lastOrderDate": "2023-10-28",
+      "salesData": {
+        "lastMonth": 35,
+        "lastQuarter": 120,
+        "lastYear": 380
+      }
     },
     {
       "id": "E5009",
@@ -133,7 +157,13 @@
         ]
       },
       "rating": 4.4,
-      "reviewCount": 187
+      "reviewCount": 187,
+      "lastOrderDate": "2023-11-12",
+      "salesData": {
+        "lastMonth": 42,
+        "lastQuarter": 185,
+        "lastYear": 610
+      }
     },
     {
       "id": "H6012",
@@ -160,7 +190,13 @@
         ]
       },
       "rating": 4.9,
-      "reviewCount": 76
+      "reviewCount": 76,
+      "lastOrderDate": "2023-09-15",
+      "salesData": {
+        "lastMonth": 8,
+        "lastQuarter": 25,
+        "lastYear": 95
+      }
     },
     {
       "id": "F7008",
@@ -187,7 +223,13 @@
         ]
       },
       "rating": 4.3,
-      "reviewCount": 94
+      "reviewCount": 94,
+      "lastOrderDate": "2023-11-08",
+      "salesData": {
+        "lastMonth": 38,
+        "lastQuarter": 155,
+        "lastYear": 520
+      }
     },
     {
       "id": "E8015",
@@ -214,7 +256,13 @@
         ]
       },
       "rating": 4.7,
-      "reviewCount": 156
+      "reviewCount": 156,
+      "lastOrderDate": "2023-10-05",
+      "salesData": {
+        "lastMonth": 12,
+        "lastQuarter": 45,
+        "lastYear": 165
+      }
     },
     {
       "id": "H9022",
@@ -241,7 +289,13 @@
         ]
       },
       "rating": 4.5,
-      "reviewCount": 203
+      "reviewCount": 203,
+      "lastOrderDate": "2023-11-18",
+      "salesData": {
+        "lastMonth": 22,
+        "lastQuarter": 85,
+        "lastYear": 310
+      }
     },
     {
       "id": "F1033",
@@ -256,7 +310,7 @@
       "sizes": ["5", "6", "7", "8", "9", "10"],
       "fits": ["True to Size", "Wide Width Available"],
       "material": "Mesh, Synthetic, Rubber",
-      "stockCount": 178,
+      "stockCount": 12,
       "supplier": "ActiveFootwear Inc.",
       "sku": "RUN-SHO-W-2023",
       "images": {
@@ -268,7 +322,13 @@
         ]
       },
       "rating": 4.6,
-      "reviewCount": 267
+      "reviewCount": 267,
+      "lastOrderDate": "2023-11-20",
+      "salesData": {
+        "lastMonth": 38,
+        "lastQuarter": 165,
+        "lastYear": 610
+      }
     }
   ]
 }
