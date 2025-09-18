@@ -255,6 +255,27 @@
             color: #666;
         }
         
+        .json-download {
+            text-align: center;
+            padding: 10px;
+            background: #e8f4fc;
+            border-top: 1px solid #d1e4f0;
+        }
+        
+        .json-download button {
+            background: #4b6cb7;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            padding: 8px 15px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        
+        .json-download button:hover {
+            background: #3556a3;
+        }
+        
         @media (max-width: 768px) {
             .chat-container {
                 flex-direction: column;
@@ -302,11 +323,11 @@
             <div class="sidebar">
                 <h3><i class="fas fa-lightbulb"></i> Sample Queries:</h3>
                 <ul class="sample-questions">
-                    <li>Colors for product F12345</li>
-                    <li>Fits for product D23456</li>
-                    <li>Stock status for product S34567</li>
-                    <li>Materials for product J45678</li>
-                    <li>Price for product SW56789</li>
+                    <li>Colors for product F1001</li>
+                    <li>Fits for product D2005</li>
+                    <li>Stock status for product S3002</li>
+                    <li>Materials for product J4008</li>
+                    <li>Price for product SW5012</li>
                 </ul>
                 
                 <h3 style="margin-top: 20px;"><i class="fas fa-info-circle"></i> Instructions</h3>
@@ -324,14 +345,18 @@
                 </div>
                 
                 <div class="chat-input">
-                    <input type="text" id="userInput" placeholder="Ask about a product (e.g., Colors for F12345)..." disabled>
+                    <input type="text" id="userInput" placeholder="Ask about a product (e.g., Colors for F1001)..." disabled>
                     <button id="sendButton" disabled><i class="fas fa-paper-plane"></i> Send</button>
                 </div>
             </div>
         </div>
+        
+        <div class="json-download">
+            <p>Using product data from: <code>products.json</code></p>
+            <button onclick="downloadJson()"><i class="fas fa-download"></i> Download Sample JSON Data</button>
+        </div>
     </div>
 
-    <!-- JSON data file would be hosted separately -->
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             const chatMessages = document.getElementById('chatMessages');
@@ -343,7 +368,7 @@
             let products = {};
             
             // Load product data from external JSON file
-            fetch('https://api.npoint.io/8c12e2a3e6c34a5c6d6f') // This is a sample endpoint - replace with your actual JSON URL
+            fetch('products.json')
                 .then(response => {
                     if (!response.ok) {
                         throw new Error('Network response was not ok');
@@ -358,69 +383,16 @@
                     
                     // Add sample message after loading
                     setTimeout(() => {
-                        addMessage('You can now ask me about any product. Try "Colors for F12345" or "Stock status for S34567".', 'bot');
+                        addMessage('You can now ask me about any product. Try "Colors for F1001" or "Stock status for S3002".', 'bot');
                     }, 500);
                 })
                 .catch(error => {
                     console.error('Error loading product data:', error);
-                    loadingMessage.innerHTML = '<i class="fas fa-exclamation-triangle"></i> Error loading product data. Using sample data instead.';
+                    loadingMessage.innerHTML = '<i class="fas fa-exclamation-triangle"></i> Error loading products.json. Please make sure the file exists in the same directory.';
                     
-                    // Fallback to sample data if external fetch fails
-                    products = {
-                        "F12345": {
-                            "name": "Men's Slim Fit Jeans",
-                            "description": "Premium denim jeans with stretch for comfort",
-                            "price": 59.99,
-                            "inStock": true,
-                            "category": "Bottoms",
-                            "colors": ["#2c3e50", "#7f8c8d", "#34495e", "#16a085"],
-                            "colorNames": ["Dark Blue", "Light Gray", "Navy", "Olive Green"],
-                            "fits": ["Slim Fit", "Regular Fit"],
-                            "sizes": ["28", "30", "32", "34", "36"],
-                            "material": "98% Cotton, 2% Elastane",
-                            "stockCount": 142,
-                            "supplier": "DenimWorks Inc.",
-                            "sku": "DNM-SL-JNS-2023"
-                        },
-                        "D23456": {
-                            "name": "Women's Summer Dress",
-                            "description": "Flowy summer dress with floral pattern",
-                            "price": 45.99,
-                            "inStock": true,
-                            "category": "Dresses",
-                            "colors": ["#e74c3c", "#3498db", "#9b59b6", "#f1c40f"],
-                            "colorNames": ["Coral Red", "Sky Blue", "Lavender", "Sunflower Yellow"],
-                            "fits": ["Regular Fit", "Loose Fit"],
-                            "sizes": ["XS", "S", "M", "L", "XL"],
-                            "material": "100% Viscose",
-                            "stockCount": 87,
-                            "supplier": "SummerBreeze Fashion",
-                            "sku": "SUM-DRS-FL-2023"
-                        },
-                        "S34567": {
-                            "name": "Running Shoes",
-                            "description": "Lightweight running shoes with cushioned soles",
-                            "price": 89.99,
-                            "inStock": false,
-                            "category": "Footwear",
-                            "colors": ["#c0392b", "#1abc9c", "#2c3e50", "#f39c12"],
-                            "colorNames": ["Cardinal Red", "Turquoise", "Midnight Blue", "Orange"],
-                            "fits": ["True to Size", "Wide Fit"],
-                            "sizes": ["7", "8", "9", "10", "11", "12"],
-                            "material": "Mesh and Synthetic",
-                            "stockCount": 0,
-                            "supplier": "RunFast Athletics",
-                            "sku": "RUN-SHO-LT-2023",
-                            "restockDate": "2023-11-15"
-                        }
-                    };
-                    
-                    userInput.disabled = false;
-                    sendButton.disabled = false;
-                    
-                    // Add sample message after loading
+                    // Add download instructions
                     setTimeout(() => {
-                        addMessage('Using sample product data. Try "Colors for F12345" or "Stock status for S34567".', 'bot');
+                        addMessage('Please download the sample JSON data using the button below and place it in the same directory as this HTML file.', 'bot');
                     }, 500);
                 });
             
@@ -489,17 +461,30 @@
                 // Convert message to lowercase for easier matching
                 const lowerMessage = message.toLowerCase();
                 
-                // Check if message contains a product ID (alphanumeric with 6 chars)
-                const productIdMatch = message.match(/([A-Za-z]?\d{5,6})/);
+                // Check if message contains a product ID (alphanumeric with 5 chars)
+                const productIdMatch = message.match(/([A-Za-z]?\d{4,5})/);
                 
                 if (!productIdMatch) {
-                    return "Please include a valid product ID in your query (e.g., 'Colors for F12345').";
+                    return "Please include a valid product ID in your query (e.g., 'Colors for F1001').";
                 }
                 
                 const productId = productIdMatch[0].toUpperCase();
                 
                 if (!products[productId]) {
-                    return `Product with ID ${productId} not found. Valid product IDs include: ${Object.keys(products).join(', ')}.`;
+                    // Try to find similar product IDs
+                    const similarIds = Object.keys(products).filter(id => 
+                        id.includes(productId) || productId.includes(id)
+                    );
+                    
+                    let response = `Product with ID ${productId} not found.`;
+                    
+                    if (similarIds.length > 0) {
+                        response += ` Did you mean: ${similarIds.slice(0, 3).join(', ')}?`;
+                    } else {
+                        response += " Valid product IDs start with F, D, S, J, or SW followed by numbers.";
+                    }
+                    
+                    return response;
                 }
                 
                 const product = products[productId];
@@ -591,6 +576,98 @@
                     </div>
                 `;
             }
+            
+            window.downloadJson = function() {
+                // Create a sample JSON file for download
+                const sampleData = {
+                    "F1001": {
+                        "name": "Men's Slim Fit Jeans",
+                        "description": "Premium denim jeans with stretch for comfort",
+                        "price": 59.99,
+                        "inStock": true,
+                        "category": "Bottoms",
+                        "colors": ["#2c3e50", "#7f8c8d", "#34495e", "#16a085"],
+                        "colorNames": ["Dark Blue", "Light Gray", "Navy", "Olive Green"],
+                        "fits": ["Slim Fit", "Regular Fit"],
+                        "sizes": ["28", "30", "32", "34", "36"],
+                        "material": "98% Cotton, 2% Elastane",
+                        "stockCount": 142,
+                        "supplier": "DenimWorks Inc.",
+                        "sku": "DNM-SL-JNS-2023"
+                    },
+                    "D2005": {
+                        "name": "Women's Summer Dress",
+                        "description": "Flowy summer dress with floral pattern",
+                        "price": 45.99,
+                        "inStock": true,
+                        "category": "Dresses",
+                        "colors": ["#e74c3c", "#3498db", "#9b59b6", "#f1c40f"],
+                        "colorNames": ["Coral Red", "Sky Blue", "Lavender", "Sunflower Yellow"],
+                        "fits": ["Regular Fit", "Loose Fit"],
+                        "sizes": ["XS", "S", "M", "L", "XL"],
+                        "material": "100% Viscose",
+                        "stockCount": 87,
+                        "supplier": "SummerBreeze Fashion",
+                        "sku": "SUM-DRS-FL-2023"
+                    },
+                    "S3002": {
+                        "name": "Running Shoes",
+                        "description": "Lightweight running shoes with cushioned soles",
+                        "price": 89.99,
+                        "inStock": false,
+                        "category": "Footwear",
+                        "colors": ["#c0392b", "#1abc9c", "#2c3e50", "#f39c12"],
+                        "colorNames": ["Cardinal Red", "Turquoise", "Midnight Blue", "Orange"],
+                        "fits": ["True to Size", "Wide Fit"],
+                        "sizes": ["7", "8", "9", "10", "11", "12"],
+                        "material": "Mesh and Synthetic",
+                        "stockCount": 0,
+                        "supplier": "RunFast Athletics",
+                        "sku": "RUN-SHO-LT-2023",
+                        "restockDate": "2023-11-15"
+                    },
+                    "J4008": {
+                        "name": "Leather Jacket",
+                        "description": "Classic biker-style leather jacket",
+                        "price": 199.99,
+                        "inStock": true,
+                        "category": "Outerwear",
+                        "colors": ["#000000", "#8B4513", "#A9A9A9"],
+                        "colorNames": ["Black", "Brown", "Charcoal"],
+                        "fits": ["Slim Fit", "Regular Fit"],
+                        "sizes": ["S", "M", "L", "XL", "XXL"],
+                        "material": "100% Genuine Leather",
+                        "stockCount": 23,
+                        "supplier": "LeatherCraft Studios",
+                        "sku": "LTH-JKT-BK-2023"
+                    },
+                    "SW5012": {
+                        "name": "Cashmere Sweater",
+                        "description": "Luxurious soft cashmere sweater",
+                        "price": 129.99,
+                        "inStock": true,
+                        "category": "Tops",
+                        "colors": ["#e74c3c", "#2980b9", "#2c3e50", "#f1c40f"],
+                        "colorNames": ["Burgundy", "Navy Blue", "Charcoal", "Camel"],
+                        "fits": ["Regular Fit", "Oversized"],
+                        "sizes": ["XS", "S", "M", "L", "XL"],
+                        "material": "100% Cashmere",
+                        "stockCount": 34,
+                        "supplier": "LuxuryKnits Ltd.",
+                        "sku": "CASH-SWT-PL-2023"
+                    }
+                };
+                
+                const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(sampleData, null, 2));
+                const downloadAnchorNode = document.createElement('a');
+                downloadAnchorNode.setAttribute("href", dataStr);
+                downloadAnchorNode.setAttribute("download", "products.json");
+                document.body.appendChild(downloadAnchorNode);
+                downloadAnchorNode.click();
+                downloadAnchorNode.remove();
+                
+                addMessage('I\'ve created a sample products.json file for you. Download it and place it in the same directory as this HTML file, then refresh the page.', 'bot');
+            };
         });
     </script>
 </body>
