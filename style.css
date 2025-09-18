@@ -1,0 +1,34 @@
+body {
+  font-family: "Helvetica Neue", Arial, sans-serif;
+  background-color: #f8f9fa;
+}
+
+.chat-box {
+  height: 400px;
+  overflow-y: auto;
+  padding: 15px;
+}
+
+.message {
+  margin-bottom: 15px;
+}
+
+.user {
+  text-align: right;
+}
+
+.user .bubble {
+  display: inline-block;
+  background: #212529;
+  color: white;
+  padding: 10px 15px;
+  border-radius: 15px 15px 0 15px;
+}
+
+.bot .bubble {
+  display: inline-block;
+  background: #f1f1f1;
+  color: #333;
+  padding: 10px 15px;
+  border-radius: 15px 15px 15px 0;
+}
