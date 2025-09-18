@@ -1,0 +1,172 @@
+{
+  "F1001": {
+    "name": "Men's Slim Fit Jeans",
+    "description": "Premium denim jeans with stretch for comfort",
+    "price": 59.99,
+    "inStock": true,
+    "category": "Bottoms",
+    "colors": [
+      "#2c3e50",
+      "#7f8c8d",
+      "#34495e",
+      "#16a085"
+    ],
+    "colorNames": [
+      "Dark Blue",
+      "Light Gray",
+      "Navy",
+      "Olive Green"
+    ],
+    "fits": [
+      "Slim Fit",
+      "Regular Fit"
+    ],
+    "sizes": [
+      "28",
+      "30",
+      "32",
+      "34",
+      "36"
+    ],
+    "material": "98% Cotton, 2% Elastane",
+    "stockCount": 142,
+    "supplier": "DenimWorks Inc.",
+    "sku": "DNM-SL-JNS-2023"
+  },
+  "D2005": {
+    "name": "Women's Summer Dress",
+    "description": "Flowy summer dress with floral pattern",
+    "price": 45.99,
+    "inStock": true,
+    "category": "Dresses",
+    "colors": [
+      "#e74c3c",
+      "#3498db",
+      "#9b59b6",
+      "#f1c40f"
+    ],
+    "colorNames": [
+      "Coral Red",
+      "Sky Blue",
+      "Lavender",
+      "Sunflower Yellow"
+    ],
+    "fits": [
+      "Regular Fit",
+      "Loose Fit"
+    ],
+    "sizes": [
+      "XS",
+      "S",
+      "M",
+      "L",
+      "XL"
+    ],
+    "material": "100% Viscose",
+    "stockCount": 87,
+    "supplier": "SummerBreeze Fashion",
+    "sku": "SUM-DRS-FL-2023"
+  },
+  "S3002": {
+    "name": "Running Shoes",
+    "description": "Lightweight running shoes with cushioned soles",
+    "price": 89.99,
+    "inStock": false,
+    "category": "Footwear",
+    "colors": [
+      "#c0392b",
+      "#1abc9c",
+      "#2c3e50",
+      "#f39c12"
+    ],
+    "colorNames": [
+      "Cardinal Red",
+      "Turquoise",
+      "Midnight Blue",
+      "Orange"
+    ],
+    "fits": [
+      "True to Size",
+      "Wide Fit"
+    ],
+    "sizes": [
+      "7",
+      "8",
+      "9",
+      "10",
+      "11",
+      "12"
+    ],
+    "material": "Mesh and Synthetic",
+    "stockCount": 0,
+    "supplier": "RunFast Athletics",
+    "sku": "RUN-SHO-LT-2023",
+    "restockDate": "2023-11-15"
+  },
+  "J4008": {
+    "name": "Leather Jacket",
+    "description": "Classic biker-style leather jacket",
+    "price": 199.99,
+    "inStock": true,
+    "category": "Outerwear",
+    "colors": [
+      "#000000",
+      "#8B4513",
+      "#A9A9A9"
+    ],
+    "colorNames": [
+      "Black",
+      "Brown",
+      "Charcoal"
+    ],
+    "fits": [
+      "Slim Fit",
+      "Regular Fit"
+    ],
+    "sizes": [
+      "S",
+      "M",
+      "L",
+      "XL",
+      "XXL"
+    ],
+    "material": "100% Genuine Leather",
+    "stockCount": 23,
+    "supplier": "LeatherCraft Studios",
+    "sku": "LTH-JKT-BK-2023"
+  },
+  "SW5012": {
+    "name": "Cashmere Sweater",
+    "description": "Luxurious soft cashmere sweater",
+    "price": 129.99,
+    "inStock": true,
+    "category": "Tops",
+    "colors": [
+      "#e74c3c",
+      "#2980b9",
+      "#2c3e50",
+      "#f1c40f"
+    ],
+    "colorNames": [
+      "Burgundy",
+      "Navy Blue",
+      "Charcoal",
+      "Camel"
+    ],
+    "fits": [
+      "Regular Fit",
+      "Oversized"
+    ],
+    "sizes": [
+      "XS",
+      "S",
+      "M",
+      "L",
+      "XL"
+    ],
+    "material": "100% Cashmere",
+    "stockCount": 34,
+    "supplier": "LuxuryKnits Ltd.",
+    "sku": "CASH-SWT-PL-2023"
+  }
+}
