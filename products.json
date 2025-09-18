@@ -1,172 +1,274 @@
 {
-  "F1001": {
-    "name": "Men's Slim Fit Jeans",
-    "description": "Premium denim jeans with stretch for comfort",
-    "price": 59.99,
-    "inStock": true,
-    "category": "Bottoms",
-    "colors": [
-      "#2c3e50",
-      "#7f8c8d",
-      "#34495e",
-      "#16a085"
-    ],
-    "colorNames": [
-      "Dark Blue",
-      "Light Gray",
-      "Navy",
-      "Olive Green"
-    ],
-    "fits": [
-      "Slim Fit",
-      "Regular Fit"
-    ],
-    "sizes": [
-      "28",
-      "30",
-      "32",
-      "34",
-      "36"
-    ],
-    "material": "98% Cotton, 2% Elastane",
-    "stockCount": 142,
-    "supplier": "DenimWorks Inc.",
-    "sku": "DNM-SL-JNS-2023"
-  },
-  "D2005": {
-    "name": "Women's Summer Dress",
-    "description": "Flowy summer dress with floral pattern",
-    "price": 45.99,
-    "inStock": true,
-    "category": "Dresses",
-    "colors": [
-      "#e74c3c",
-      "#3498db",
-      "#9b59b6",
-      "#f1c40f"
-    ],
-    "colorNames": [
-      "Coral Red",
-      "Sky Blue",
-      "Lavender",
-      "Sunflower Yellow"
-    ],
-    "fits": [
-      "Regular Fit",
-      "Loose Fit"
-    ],
-    "sizes": [
-      "XS",
-      "S",
-      "M",
-      "L",
-      "XL"
-    ],
-    "material": "100% Viscose",
-    "stockCount": 87,
-    "supplier": "SummerBreeze Fashion",
-    "sku": "SUM-DRS-FL-2023"
-  },
-  "S3002": {
-    "name": "Running Shoes",
-    "description": "Lightweight running shoes with cushioned soles",
-    "price": 89.99,
-    "inStock": false,
-    "category": "Footwear",
-    "colors": [
-      "#c0392b",
-      "#1abc9c",
-      "#2c3e50",
-      "#f39c12"
-    ],
-    "colorNames": [
-      "Cardinal Red",
-      "Turquoise",
-      "Midnight Blue",
-      "Orange"
-    ],
-    "fits": [
-      "True to Size",
-      "Wide Fit"
-    ],
-    "sizes": [
-      "7",
-      "8",
-      "9",
-      "10",
-      "11",
-      "12"
-    ],
-    "material": "Mesh and Synthetic",
-    "stockCount": 0,
-    "supplier": "RunFast Athletics",
-    "sku": "RUN-SHO-LT-2023",
-    "restockDate": "2023-11-15"
-  },
-  "J4008": {
-    "name": "Leather Jacket",
-    "description": "Classic biker-style leather jacket",
-    "price": 199.99,
-    "inStock": true,
-    "category": "Outerwear",
-    "colors": [
-      "#000000",
-      "#8B4513",
-      "#A9A9A9"
-    ],
-    "colorNames": [
-      "Black",
-      "Brown",
-      "Charcoal"
-    ],
-    "fits": [
-      "Slim Fit",
-      "Regular Fit"
-    ],
-    "sizes": [
-      "S",
-      "M",
-      "L",
-      "XL",
-      "XXL"
-    ],
-    "material": "100% Genuine Leather",
-    "stockCount": 23,
-    "supplier": "LeatherCraft Studios",
-    "sku": "LTH-JKT-BK-2023"
-  },
-  "SW5012": {
-    "name": "Cashmere Sweater",
-    "description": "Luxurious soft cashmere sweater",
-    "price": 129.99,
-    "inStock": true,
-    "category": "Tops",
-    "colors": [
-      "#e74c3c",
-      "#2980b9",
-      "#2c3e50",
-      "#f1c40f"
-    ],
-    "colorNames": [
-      "Burgundy",
-      "Navy Blue",
-      "Charcoal",
-      "Camel"
-    ],
-    "fits": [
-      "Regular Fit",
-      "Oversized"
-    ],
-    "sizes": [
-      "XS",
-      "S",
-      "M",
-      "L",
-      "XL"
-    ],
-    "material": "100% Cashmere",
-    "stockCount": 34,
-    "supplier": "LuxuryKnits Ltd.",
-    "sku": "CASH-SWT-PL-2023"
-  }
+  "products": [
+    {
+      "id": "F1001",
+      "name": "Men's Slim Fit Jeans",
+      "description": "Premium denim jeans with stretch for comfort and modern style. Perfect for casual wear.",
+      "price": 59.99,
+      "inStock": true,
+      "category": "Clothing",
+      "subcategory": "Bottoms",
+      "colors": ["#2c3e50", "#7f8c8d", "#34495e", "#16a085"],
+      "colorNames": ["Dark Blue", "Light Gray", "Navy", "Olive Green"],
+      "sizes": ["28", "30", "32", "34", "36"],
+      "fits": ["Slim Fit", "Regular Fit"],
+      "material": "98% Cotton, 2% Elastane",
+      "stockCount": 142,
+      "supplier": "DenimWorks Inc.",
+      "sku": "DNM-SL-JNS-2023",
+      "images": {
+        "thumbnail": "https://example.com/images/F1001_thumb.jpg",
+        "gallery": [
+          "https://example.com/images/F1001_1.jpg",
+          "https://example.com/images/F1001_2.jpg",
+          "https://example.com/images/F1001_3.jpg"
+        ]
+      },
+      "rating": 4.5,
+      "reviewCount": 128
+    },
+    {
+      "id": "E2005",
+      "name": "Wireless Noise-Cancelling Headphones",
+      "description": "Premium over-ear headphones with active noise cancellation and 30-hour battery life.",
+      "price": 249.99,
+      "inStock": true,
+      "category": "Electronics",
+      "subcategory": "Audio",
+      "colors": ["#000000", "#2c3e50", "#c0392b"],
+      "colorNames": ["Black", "Space Gray", "Red"],
+      "sizes": ["One Size"],
+      "fits": ["Adjustable"],
+      "material": "Plastic, Metal, Leather",
+      "stockCount": 87,
+      "supplier": "AudioTech Electronics",
+      "sku": "AUD-NC-WL-2023",
+      "images": {
+        "thumbnail": "https://example.com/images/E2005_thumb.jpg",
+        "gallery": [
+          "https://example.com/images/E2005_1.jpg",
+          "https://example.com/images/E2005_2.jpg",
+          "https://example.com/images/E2005_3.jpg"
+        ]
+      },
+      "rating": 4.8,
+      "reviewCount": 215
+    },
+    {
+      "id": "H3007",
+      "name": "Ceramic Cookware Set",
+      "description": "10-piece non-toxic ceramic cookware set with non-stick surface and even heat distribution.",
+      "price": 199.99,
+      "inStock": true,
+      "category": "Home",
+      "subcategory": "Kitchen",
+      "colors": ["#e74c3c", "#3498db", "#f1c40f"],
+      "colorNames": ["Red", "Blue", "Yellow"],
+      "sizes": ["10-Piece Set"],
+      "fits": ["Standard"],
+      "material": "Ceramic, Stainless Steel",
+      "stockCount": 54,
+      "supplier": "HomeEssentials Ltd.",
+      "sku": "CER-CKW-SET-2023",
+      "images": {
+        "thumbnail": "https://example.com/images/H3007_thumb.jpg",
+        "gallery": [
+          "https://example.com/images/H3007_1.jpg",
+          "https://example.com/images/H3007_2.jpg",
+          "https://example.com/images/H3007_3.jpg"
+        ]
+      },
+      "rating": 4.6,
+      "reviewCount": 89
+    },
+    {
+      "id": "F4002",
+      "name": "Women's Winter Parka",
+      "description": "Waterproof winter coat with thermal insulation and faux fur trim hood.",
+      "price": 189.99,
+      "inStock": true,
+      "category": "Clothing",
+      "subcategory": "Outerwear",
+      "colors": ["#000000", "#2c3e50", "#7f8c8d"],
+      "colorNames": ["Black", "Navy", "Gray"],
+      "sizes": ["XS", "S", "M", "L", "XL"],
+      "fits": ["Regular Fit", "Oversized"],
+      "material": "Polyester, Down Insulation",
+      "stockCount": 76,
+      "supplier": "WinterGear Co.",
+      "sku": "WIN-PKA-W-2023",
+      "images": {
+        "thumbnail": "https://example.com/images/F4002_thumb.jpg",
+        "gallery": [
+          "https://example.com/images/F4002_1.jpg",
+          "https://example.com/images/F4002_2.jpg",
+          "https://example.com/images/F4002_3.jpg"
+        ]
+      },
+      "rating": 4.7,
+      "reviewCount": 142
+    },
+    {
+      "id": "E5009",
+      "name": "Smart Fitness Watch",
+      "description": "Advanced health tracking with heart rate monitor, GPS, and 7-day battery life.",
+      "price": 179.99,
+      "inStock": true,
+      "category": "Electronics",
+      "subcategory": "Wearables",
+      "colors": ["#000000", "#7f8c8d", "#c0392b"],
+      "colorNames": ["Black", "Silver", "Red"],
+      "sizes": ["Regular", "Large"],
+      "fits": ["Adjustable Strap"],
+      "material": "Aluminum, Silicone",
+      "stockCount": 203,
+      "supplier": "TechGadgets Inc.",
+      "sku": "SMT-WCH-FT-2023",
+      "images": {
+        "thumbnail": "https://example.com/images/E5009_thumb.jpg",
+        "gallery": [
+          "https://example.com/images/E5009_1.jpg",
+          "https://example.com/images/E5009_2.jpg",
+          "https://example.com/images/E5009_3.jpg"
+        ]
+      },
+      "rating": 4.4,
+      "reviewCount": 187
+    },
+    {
+      "id": "H6012",
+      "name": "Memory Foam Mattress",
+      "description": "Queen-size cooling gel memory foam mattress with pressure relief and support.",
+      "price": 599.99,
+      "inStock": true,
+      "category": "Home",
+      "subcategory": "Bedroom",
+      "colors": ["#ffffff"],
+      "colorNames": ["White"],
+      "sizes": ["Queen"],
+      "fits": ["Standard Bed Frame"],
+      "material": "Memory Foam, Gel Infusion",
+      "stockCount": 32,
+      "supplier": "SleepWell Mattresses",
+      "sku": "MEM-MTR-QN-2023",
+      "images": {
+        "thumbnail": "https://example.com/images/H6012_thumb.jpg",
+        "gallery": [
+          "https://example.com/images/H6012_1.jpg",
+          "https://example.com/images/H6012_2.jpg",
+          "https://example.com/images/H6012_3.jpg"
+        ]
+      },
+      "rating": 4.9,
+      "reviewCount": 76
+    },
+    {
+      "id": "F7008",
+      "name": "Men's Oxford Shirt",
+      "description": "Classic cotton oxford shirt with button-down collar and regular fit.",
+      "price": 49.99,
+      "inStock": true,
+      "category": "Clothing",
+      "subcategory": "Tops",
+      "colors": ["#ffffff", "#3498db", "#2c3e50", "#e74c3c"],
+      "colorNames": ["White", "Light Blue", "Navy", "Red"],
+      "sizes": ["S", "M", "L", "XL", "XXL"],
+      "fits": ["Regular Fit", "Slim Fit"],
+      "material": "100% Cotton",
+      "stockCount": 215,
+      "supplier": "ClassicShirts Ltd.",
+      "sku": "OXF-SHT-M-2023",
+      "images": {
+        "thumbnail": "https://example.com/images/F7008_thumb.jpg",
+        "gallery": [
+          "https://example.com/images/F7008_1.jpg",
+          "https://example.com/images/F7008_2.jpg",
+          "https://example.com/images/F7008_3.jpg"
+        ]
+      },
+      "rating": 4.3,
+      "reviewCount": 94
+    },
+    {
+      "id": "E8015",
+      "name": "4K Ultra HD Smart TV",
+      "description": "55-inch 4K UHD Smart TV with HDR and built-in streaming apps.",
+      "price": 499.99,
+      "inStock": true,
+      "category": "Electronics",
+      "subcategory": "TV & Home Theater",
+      "colors": ["#000000"],
+      "colorNames": ["Black"],
+      "sizes": ["55-inch"],
+      "fits": ["Wall Mountable", "Stand Included"],
+      "material": "Plastic, Metal",
+      "stockCount": 28,
+      "supplier": "VisionTech Electronics",
+      "sku": "4K-TV-55-2023",
+      "images": {
+        "thumbnail": "https://example.com/images/E8015_thumb.jpg",
+        "gallery": [
+          "https://example.com/images/E8015_1.jpg",
+          "https://example.com/images/E8015_2.jpg",
+          "https://example.com/images/E8015_3.jpg"
+        ]
+      },
+      "rating": 4.7,
+      "reviewCount": 156
+    },
+    {
+      "id": "H9022",
+      "name": "Robot Vacuum Cleaner",
+      "description": "Smart mapping robot vacuum with app control and self-charging capability.",
+      "price": 299.99,
+      "inStock": true,
+      "category": "Home",
+      "subcategory": "Cleaning",
+      "colors": ["#000000", "#7f8c8d"],
+      "colorNames": ["Black", "Silver"],
+      "sizes": ["Standard"],
+      "fits": ["All Floor Types"],
+      "material": "Plastic, Rubber",
+      "stockCount": 41,
+      "supplier": "CleanHome Appliances",
+      "sku": "ROB-VAC-SM-2023",
+      "images": {
+        "thumbnail": "https://example.com/images/H9022_thumb.jpg",
+        "gallery": [
+          "https://example.com/images/H9022_1.jpg",
+          "https://example.com/images/H9022_2.jpg",
+          "https://example.com/images/H9022_3.jpg"
+        ]
+      },
+      "rating": 4.5,
+      "reviewCount": 203
+    },
+    {
+      "id": "F1033",
+      "name": "Women's Running Shoes",
+      "description": "Lightweight running shoes with cushioning technology and breathable mesh.",
+      "price": 89.99,
+      "inStock": true,
+      "category": "Clothing",
+      "subcategory": "Footwear",
+      "colors": ["#e74c3c", "#3498db", "#000000", "#f1c40f"],
+      "colorNames": ["Red", "Blue", "Black", "Yellow"],
+      "sizes": ["5", "6", "7", "8", "9", "10"],
+      "fits": ["True to Size", "Wide Width Available"],
+      "material": "Mesh, Synthetic, Rubber",
+      "stockCount": 178,
+      "supplier": "ActiveFootwear Inc.",
+      "sku": "RUN-SHO-W-2023",
+      "images": {
+        "thumbnail": "https://example.com/images/F1033_thumb.jpg",
+        "gallery": [
+          "https://example.com/images/F1033_1.jpg",
+          "https://example.com/images/F1033_2.jpg",
+          "https://example.com/images/F1033_3.jpg"
+        ]
+      },
+      "rating": 4.6,
+      "reviewCount": 267
+    }
+  ]
 }
