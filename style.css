@@ -1,55 +1,163 @@
 body {
-  font-family: "Helvetica Neue", Arial, sans-serif;
-  background-color: #f8f9fa;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+    min-height: 100vh;
+    padding-top: 20px;
 }
 
-.chat-box {
-  height: 400px;
-  overflow-y: auto;
-  padding: 0;
+.chat-container {
+    max-width: 1000px;
+    margin: 0 auto;
+    box-shadow: 0 0 25px rgba(0, 0, 0, 0.1);
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+.chat-header {
+    background: linear-gradient(90deg, #2c3e50 0%, #4a6491 100%);
+    color: white;
+    padding: 15px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
 .chat-body {
-  height: 100%;
-  padding: 15px;
-  overflow-y: auto;
+    height: 500px;
+    overflow-y: auto;
+    padding: 20px;
+    background-color: #f8f9fa;
 }
 
 .message {
-  margin-bottom: 15px;
+    margin-bottom: 20px;
+    display: flex;
 }
 
-.user {
-  text-align: right;
+.bot-message {
+    justify-content: flex-start;
 }
 
-.user .bubble {
-  display: inline-block;
-  background: #212529;
-  color: white;
-  padding: 10px 15px;
-  border-radius: 15px 15px 0 15px;
-  max-width: 80%;
-  text-align: left;
+.user-message {
+    justify-content: flex-end;
 }
 
-.bot {
-  text-align: left;
+.message-content {
+    max-width: 70%;
+    padding: 12px 16px;
+    border-radius: 18px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
-.bot .bubble {
-  display: inline-block;
-  background: #e9ecef;
-  color: #333;
-  padding: 12px 15px;
-  border-radius: 15px 15px 15px 0;
-  max-width: 80%;
+.bot-message .message-content {
+    background: white;
+    border-bottom-left-radius: 5px;
 }
 
-/* Make images responsive in chat */
-.bubble img {
-  max-width: 100%;
-  height: auto;
-  border-radius: 8px;
-  margin-top: 8px;
+.user-message .message-content {
+    background: #e3f2fd;
+    border-bottom-right-radius: 5px;
+}
+
+.chat-input {
+    display: flex;
+    padding: 15px;
+    background-color: white;
+    border-top: 1px solid #eaeaea;
+}
+
+.suggestion-chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    padding: 10px 15px;
+    background-color: #f0f4f8;
+    border-bottom: 1px solid #eaeaea;
+}
+
+.chip {
+    background: white;
+    border: 1px solid #ddd;
+    border-radius: 18px;
+    padding: 6px 12px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.chip:hover {
+    background: #4a6491;
+    color: white;
+}
+
+.product-card {
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    padding: 15px;
+    margin: 10px 0;
+    background: white;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.stat-item {
+    background: #f8f9fa;
+    padding: 8px;
+    border-radius: 6px;
+    text-align: center;
+}
+
+.alert-low {
+    color: #e53935;
+    font-weight: bold;
+}
+
+.alert-medium {
+    color: #fb8c00;
+}
+
+.table-responsive {
+    max-height: 200px;
+    overflow-y: auto;
+}
+
+.search-highlight {
+    background-color: #fff9c4;
+    padding: 2px 0;
+}
+
+.command-help {
+    background: #e8f5e9;
+    border-left: 4px solid #4caf50;
+    padding: 10px 15px;
+    margin: 10px 0;
+    border-radius: 4px;
+}
+
+.action-buttons {
+    display: flex;
+    gap: 8px;
+    margin-top: 10px;
+}
+
+.btn-sm {
+    padding: 4px 8px;
+    font-size: 12px;
+}
+
+.loading-dots:after {
+    content: '';
+    animation: dots 1.5s infinite;
+}
+
+@keyframes dots {
+    0%, 20% { content: '.'; }
+    40% { content: '..'; }
+    60%, 100% { content: '...'; }
 }
