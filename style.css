@@ -6,7 +6,13 @@ body {
 .chat-box {
   height: 400px;
   overflow-y: auto;
+  padding: 0;
+}
+
+.chat-body {
+  height: 100%;
   padding: 15px;
+  overflow-y: auto;
 }
 
 .message {
@@ -23,12 +29,27 @@ body {
   color: white;
   padding: 10px 15px;
   border-radius: 15px 15px 0 15px;
+  max-width: 80%;
+  text-align: left;
+}
+
+.bot {
+  text-align: left;
 }
 
 .bot .bubble {
   display: inline-block;
-  background: #f1f1f1;
+  background: #e9ecef;
   color: #333;
-  padding: 10px 15px;
+  padding: 12px 15px;
   border-radius: 15px 15px 15px 0;
+  max-width: 80%;
+}
+
+/* Make images responsive in chat */
+.bubble img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+  margin-top: 8px;
 }
